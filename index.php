@@ -11,13 +11,3 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
-
-// Установка подключения к БД
-return array(
-    'components'=>array(
-        'db'=>array(
-    'connectionString'=>'sqlite:/wwwroot/blog/protected/data/blog.db',
-    'tablePrefix'=>'tbl_',
-),
-    ),
-);

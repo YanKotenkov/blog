@@ -51,7 +51,12 @@ return array(
 		*/
 
 		// database settings are configured in database.php
-		'db'=>require(dirname(__FILE__).'/database.php'),
+//		'db'=>require(dirname(__FILE__).'/database.php'),
+
+        'db'=>array(
+            'connectionString'=>'sqlite:/home/xshadowx/www/blog/protected/data/blog.db',
+            'tablePrefix'=>'tbl_',
+        ),
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -83,19 +88,3 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
 	),
 );
-/*
-// Устанавливаем Gii
-return array(
-    'import'=>array(
-    'application.models.*',
-    'application.components.*',
-),
-
-    'modules'=>array(
-    'gii'=>array(
-        'class'=>'system.gii.GiiModule',
-        'password'=>'ваш пароль',
-    ),
-),
-);
-*/
