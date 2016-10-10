@@ -18,6 +18,7 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->dropDownList($model,'status',Lookup::items('PostStatus')); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
@@ -37,13 +38,12 @@
 		<?php echo $form->error($model,'tags'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->dropDownList($model,'status',Lookup::items('PostStatus')); ?>
+<!--	<div class="row">-->
 <!--		--><?php //echo $form->labelEx($model,'status'); ?>
 <!--		--><?php //echo $form->textField($model,'status'); ?>
 <!--		--><?php //echo $form->error($model,'status'); ?>
-	</div>
-
+<!--	</div>-->
+<!---->
 <!--	<div class="row">-->
 <!--		--><?php //echo $form->labelEx($model,'create_time'); ?>
 <!--		--><?php //echo $form->textField($model,'create_time'); ?>

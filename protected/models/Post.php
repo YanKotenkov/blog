@@ -23,6 +23,14 @@ class Post extends CActiveRecord
     const STATUS_PUBLISHED=2;
     const STATUS_ARCHIVED=3;
 
+    public function getUrl()
+    {
+        return Yii::app()->createUrl('post/view', array(
+            'id'=>$this->id,
+            'title'=>$this->title,
+        ));
+    }
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -34,22 +42,22 @@ class Post extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('title, content, status', 'required'),
-			array('title', 'length', 'max'=>128),
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('title, content, status', 'required'),
+            array('title', 'length', 'max'=>128),
             array('status', 'in', 'range'=>array(1,2,3)),
             array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/',
                 'message'=>'В тегах можно использовать только буквы.'),
             array('tags', 'normalizeTags'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
+            // The following rule is used by search().
+            // @todo Please remove those attributes that should not be searched.
             array('title, status', 'safe', 'on'=>'search'),
-		);
-	}
+        );
+    }
 
 	/**
 	 * @return array relational rules.
@@ -128,15 +136,6 @@ class Post extends CActiveRecord
 		return parent::model($className);
 	}
 
-
-    public function getUrl()
-    {
-        return Yii::app()->createUrl('post/view', array(
-            'id'=>$this->id,
-            'title'=>$this->title,
-        ));
-    }
-
     protected function beforeSave()
     {
         if(parent::beforeSave())
@@ -166,5 +165,10 @@ class Post extends CActiveRecord
     {
         parent::afterFind();
         $this->_oldTags=$this->tags;
+    }
+
+    public function normalizeTags($attribute,$params)
+    {
+        $this->tags=Tag::array2string(array_unique(Tag::string2array($this->tags)));
     }
 }
