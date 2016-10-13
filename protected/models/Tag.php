@@ -58,6 +58,55 @@ class Tag extends CActiveRecord
 		);
 	}
 
+    /**
+     * Returns tag names and their corresponding weights.
+     * Only the tags with the top weights will be returned.
+     * @param integer the maximum number of tags that should be returned
+     * @return array weights indexed by tag names.
+     */
+    public function findTagWeights($limit=20)
+    {
+        $models=$this->findAll(array(
+            'order'=>'frequency DESC',
+            'limit'=>$limit,
+        ));
+
+        $total=0;
+        foreach($models as $model)
+            $total+=$model->frequency;
+
+        $tags=array();
+        if($total>0)
+        {
+            foreach($models as $model)
+                $tags[$model->name]=8+(int)(16*$model->frequency/($total+10));
+            ksort($tags);
+        }
+        return $tags;
+    }
+
+    /**
+     * Suggests a list of existing tags matching the specified keyword.
+     * @param string the keyword to be matched
+     * @param integer maximum number of tags to be returned
+     * @return array list of matching tag names
+     */
+    public function suggestTags($keyword,$limit=20)
+    {
+        $tags=$this->findAll(array(
+            'condition'=>'name LIKE :keyword',
+            'order'=>'frequency DESC, Name',
+            'limit'=>$limit,
+            'params'=>array(
+                ':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',
+            ),
+        ));
+        $names=array();
+        foreach($tags as $tag)
+            $names[]=$tag->name;
+        return $names;
+    }
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
