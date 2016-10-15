@@ -69,7 +69,7 @@ class PostController extends Controller
             echo CActiveForm::validate($comment);
             Yii::app()->end();
         }
-        
+
         if(isset($_POST['Comment']))
         {
             $comment->attributes=$_POST['Comment'];
