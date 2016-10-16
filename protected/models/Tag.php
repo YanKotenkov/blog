@@ -87,8 +87,8 @@ class Tag extends CActiveRecord
 
     /**
      * Suggests a list of existing tags matching the specified keyword.
-     * @param string the keyword to be matched
-     * @param integer maximum number of tags to be returned
+     * @param string $keyword the keyword to be matched
+     * @param integer $limit maximum number of tags to be returned
      * @return array list of matching tag names
      */
     public function suggestTags($keyword,$limit=20)
@@ -138,7 +138,7 @@ class Tag extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Tag the static model class
+	 * @return string the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

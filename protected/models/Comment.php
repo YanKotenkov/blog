@@ -18,7 +18,9 @@
  */
 class Comment extends CActiveRecord
 {
+    /** Id ожидающего комментария */
     const STATUS_PENDING=1;
+
     const STATUS_APPROVED=2;
 
 	/**

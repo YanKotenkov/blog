@@ -136,6 +136,9 @@ class Post extends CActiveRecord
 		return parent::model($className);
 	}
 
+    /**
+     * @return bool
+     */
     protected function beforeSave()
     {
         if(parent::beforeSave())
