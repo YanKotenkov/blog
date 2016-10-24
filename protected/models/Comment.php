@@ -20,7 +20,7 @@ class Comment extends CActiveRecord
 {
     /** Id ожидающего комментария */
     const STATUS_PENDING=1;
-
+    /** Id одобренного комментария */
     const STATUS_APPROVED=2;
 
 	/**
@@ -138,6 +138,14 @@ class Comment extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * @return integer the number of comments that are pending approval
+     */
+    public function getPendingCommentCount()
+    {
+        return $this->count('status='.self::STATUS_PENDING);
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.

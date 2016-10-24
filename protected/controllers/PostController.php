@@ -131,11 +131,12 @@ class PostController extends Controller
 		));
 	}
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
+    /**
+     * Deletes a particular model.
+     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * @throws CHttpException
+     * @internal param int $id the ID of the model to be deleted
+     */
     public function actionDelete()
     {
         if(Yii::app()->request->isPostRequest)
