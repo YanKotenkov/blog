@@ -46,17 +46,19 @@ class Post extends CActiveRecord
     {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
-        return array(
-            array('title, content, status', 'required'),
-            array('title', 'length', 'max'=>128),
-            array('status', 'in', 'range'=>array(1,2,3)),
-            array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/',
-                'message'=>'В тегах можно использовать только буквы.'),
-            array('tags', 'normalizeTags'),
+        return [
+            ['title, content, status', 'required'],
+            ['title', 'length', 'max'=>128],
+            ['status', 'in', 'range'=> [1,2,3]],
+            [
+                'tags', 'match', 'pattern'=>'/^[\w\s,]+$/',
+                'message'=>'В тегах можно использовать только буквы.'
+            ],
+            ['tags', 'normalizeTags'],
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('title, status', 'safe', 'on'=>'search'),
-        );
+            ['title, status', 'safe', 'on'=>'search'],
+        ];
     }
 
 	/**

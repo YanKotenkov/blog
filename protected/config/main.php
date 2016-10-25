@@ -6,20 +6,20 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 /** @noinspection PhpDuplicateArrayKeysInspection */
-return array(
+return [
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=> ['log'],
 
 	// autoloading model and component classes
-	'import'=>array(
+	'import'=> [
 		'application.models.*',
 		'application.components.*',
-	),
+    ],
 
-	'modules'=>array(
+	'modules'=> [
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(
@@ -29,75 +29,62 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		*/
-	),
+    ],
 
 	// application components
-	'components'=>array(
+	'components'=> [
 
-		'user'=>array(
+		'user'=> [
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
-		),
+        ],
 
 		// uncomment the following to enable URLs in path-format
-		/*
-		'urlManager'=>array(
+
+		'urlManager'=> [
 			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+			'rules'=> [
+                'post/<id:\d+>/<title:.*?>'=>'post/view',
+                'posts/<tag:.*?>'=>'post/index',
+                'post/update/<id:\d+>'=>'post/update',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		),
-		*/
+            ],
+        ],
 
 		// database settings are configured in database.php
 //		'db'=>require(dirname(__FILE__).'/database.php'),
-        'db'=>array(
+        'db'=> [
             'connectionString'=>'sqlite:/home/xshadowx/www/blog/protected/data/blog.db',
             'tablePrefix'=>'tbl_',
-        ),
+        ],
 
-		'errorHandler'=>array(
+		'errorHandler'=> [
 			// use 'site/error' action to display errors
 			'errorAction'=>YII_DEBUG ? null : 'site/error',
-		),
+        ],
 
-		'log'=>array(
+		'log'=> [
 			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
+			'routes'=> [
+				[
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
-				),
+                ],
 				// uncomment the following to show log messages on web pages
 				/*
 				array(
 					'class'=>'CWebLogRoute',
 				),
 				*/
-			),
-		),
+            ],
+        ],
 
-	),
+    ],
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
+	'params'=> [
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-	),
-
-    'import'=>array(
-        'application.models.*',
-        'application.components.*',
-    ),
-
-    // Подключаем Gii
-    'modules'=>array(
-        'gii'=>array(
-            'class'=>'system.gii.GiiModule',
-            'password'=>'ваш пароль',
-        ),
-    ),
-);
+    ],
+];

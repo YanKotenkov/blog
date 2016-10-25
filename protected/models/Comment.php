@@ -38,12 +38,13 @@ class Comment extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-        return array(
-            array('content, author, email', 'required'),
-            array('author, email, url', 'length', 'max'=>128),
-            array('email','email'),
-            array('url','url'),
-        );
+        return [
+            ['content, author, email', 'required'],
+            ['author, email, url', 'length', 'max'=>128],
+            ['status', 'in', 'range'=> [1,2]],
+            ['email','email'],
+            ['url','url'],
+        ];
 	}
 
 	/**
@@ -168,5 +169,18 @@ class Comment extends CActiveRecord
         }
         else
             return false;
+    }
+
+    /**
+     * @param int $limit
+     * @return static[]
+     */
+    public function findRecentComments($limit=10)
+    {
+        return $this->with('post')->findAll([
+            'condition'=>'t.status='.self::STATUS_APPROVED,
+            'order'=>'t.create_time DESC',
+            'limit'=>$limit,
+        ]);
     }
 }

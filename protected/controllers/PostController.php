@@ -54,10 +54,10 @@ class PostController extends Controller
         $post=$this->loadModel();
         $comment=$this->newComment($post);
 
-        $this->render('view',array(
+        $this->render('view', [
             'model'=>$post,
             'comment'=>$comment,
-        ));
+        ]);
     }
 
     protected function newComment($post)

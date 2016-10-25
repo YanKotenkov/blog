@@ -8,16 +8,27 @@
 <div class="span-5 last">
 	<div id="sidebar">
 		<?php if(!Yii::app()->user->isGuest) $this->widget('UserMenu'); ?>
-	<?php
-		$this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'Operations',
-		));
-		$this->widget('zii.widgets.CMenu', array(
-			'items'=>$this->menu,
-			'htmlOptions'=>array('class'=>'operations'),
-		));
-		$this->endWidget();
-	?>
+
+        <?php $this->widget('TagCloud', [
+            'maxTags'=>Yii::app()->params['tagCloudCount'],
+        ]); ?>
+
+        <?php $this->widget('RecentComments', array(
+            'maxComments'=>Yii::app()->params['recentCommentCount'],
+        )); ?>
+
+		<?php
+			$this->beginWidget('zii.widgets.CPortlet', [
+				'title'=>'Operations',
+            ]);
+
+			$this->widget('zii.widgets.CMenu', [
+				'items'=>$this->menu,
+				'htmlOptions'=> ['class'=>'operations'],
+            ]);
+			$this->endWidget();
+		?>
 	</div><!-- sidebar -->
+
 </div>
 <?php $this->endContent(); ?>
