@@ -86,5 +86,7 @@ return [
 	'params'=> [
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+        'recentCommentCount' => 10,
+        'tagCloudCount' => 10,
     ],
 ];

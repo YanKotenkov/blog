@@ -1,3 +1,5 @@
 protected/runtime/
+public/assets/*
+!public/assets/.gitkeep
 vendor/
 .idea/
