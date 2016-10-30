@@ -53,17 +53,17 @@ class Post extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return [
-            ['title, content, status','required'],
-            ['title','length','max' => 128],
-            ['status','in','range' => [1,2,3]],
+            ['title, content, status', 'required'],
+            ['title', 'length', 'max' => 128],
+            ['status', 'in', 'range' => [1, 2, 3]],
             [
-                'tags','match','pattern' => '/^[\w\s,]+$/',
+                'tags', 'match', 'pattern' => '/^[\w\s,]+$/',
                 'message' => 'В тегах можно использовать только буквы.'
             ],
-            ['tags','normalizeTags'],
+            ['tags', 'normalizeTags'],
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            ['title, status','safe','on' => 'search'],
+            ['title, status', 'safe', 'on' => 'search'],
         ];
     }
 
@@ -74,14 +74,14 @@ class Post extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
-            'author' => array(self::BELONGS_TO,'User','author_id'),
-            'comments' => array(self::HAS_MANY,'Comment','post_id',
+        return [
+            'author' => [self::BELONGS_TO, 'User', 'author_id'],
+            'comments' => [self::HAS_MANY, 'Comment', 'post_id',
                 'condition' => 'comments.status=' . Comment::STATUS_APPROVED,
-                'order' => 'comments.create_time DESC'),
-            'commentCount' => array(self::STAT,'Comment','post_id',
-                'condition' => 'status=' . Comment::STATUS_APPROVED),
-        );
+                'order' => 'comments.create_time DESC'],
+            'commentCount' => [self::STAT, 'Comment', 'post_id',
+                'condition' => 'status=' . Comment::STATUS_APPROVED],
+        ];
     }
 
     /**
@@ -119,16 +119,16 @@ class Post extends CActiveRecord
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('id',$this->id);
-        $criteria->compare('title',$this->title,true);
-        $criteria->compare('content',$this->content,true);
-        $criteria->compare('tags',$this->tags,true);
-        $criteria->compare('status',$this->status);
-        $criteria->compare('create_time',$this->create_time);
-        $criteria->compare('update_time',$this->update_time);
-        $criteria->compare('author_id',$this->author_id);
+        $criteria->compare('id', $this->id);
+        $criteria->compare('title', $this->title, true);
+        $criteria->compare('content', $this->content, true);
+        $criteria->compare('tags', $this->tags, true);
+        $criteria->compare('status', $this->status);
+        $criteria->compare('create_time', $this->create_time);
+        $criteria->compare('update_time', $this->update_time);
+        $criteria->compare('author_id', $this->author_id);
 
-        return new CActiveDataProvider($this,array(
+        return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
     }

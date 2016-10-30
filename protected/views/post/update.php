@@ -2,20 +2,20 @@
 /* @var $this PostController */
 /* @var $model Post */
 
-$this->breadcrumbs=array(
-	'Posts'=>array('index'),
-	$model->title=>array('view','id'=>$model->id),
-	'Update',
-);
+$this->breadcrumbs = [
+    'Posts' => ['index'],
+    $model->title => ['view', 'id' => $model->id],
+    'Update',
+];
 
-$this->menu=array(
-	array('label'=>'List Post', 'url'=>array('index')),
-	array('label'=>'Create Post', 'url'=>array('create')),
-	array('label'=>'View Post', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Post', 'url'=>array('admin')),
-);
+$this->menu = [
+    ['label' => 'List Post', 'url' => ['index']],
+    ['label' => 'Create Post', 'url' => ['create']],
+    ['label' => 'View Post', 'url' => ['view', 'id' => $model->id]],
+    ['label' => 'Manage Post', 'url' => ['admin']],
+];
 ?>
 
-<h1>Update Post <?php echo $model->id; ?></h1>
+    <h1>Update Post <?php echo $model->id; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', ['model' => $model]); ?>
