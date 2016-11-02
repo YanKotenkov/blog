@@ -29,7 +29,10 @@ $this->menu = [
         'title',
         'content',
         'tags',
-        'status',
+        [
+            'name' => 'status',
+            'value' => Lookup::item("PostStatus", $model->status),
+        ],
         [
             'name' => 'create_time',
             'type' => 'datetime',

@@ -28,7 +28,11 @@ $this->menu = [
     'attributes' => [
         'id',
         'content',
-        'status',
+        [
+            'name' => 'status',
+            'type' => 'row',
+            'value' => Lookup::item("CommentStatus", $model->status),
+        ],
         [
             'name' => 'create_time',
             'type' => 'datetime',

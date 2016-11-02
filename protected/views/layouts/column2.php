@@ -13,9 +13,13 @@
             }
             ?>
 
-            <?php $this->widget('TagCloud', [
-                'maxTags' => Yii::app()->params['tagCloudCount'],
-            ]); ?>
+            <?php if ($this->beginCache('tagCloud', ['duration'=>3600])) : ?>
+
+                <?php $this->widget('TagCloud', [
+                    'maxTags'=>Yii::app()->params['tagCloudCount'],
+                ]); ?>
+                <?php $this->endCache(); ?>
+            <?php endif; ?>
 
             <?php $this->widget('RecentComments', [
                 'maxComments' => Yii::app()->params['recentCommentCount'],

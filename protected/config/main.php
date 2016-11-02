@@ -31,6 +31,8 @@ return [
         */
     ],
 
+    'defaultController'=>'post',
+
     // application components
     'components' => [
 
@@ -51,12 +53,17 @@ return [
             ],
         ],
 
+        'cache'=> [
+            'class'=>'CDbCache',
+        ],
+
         // database settings are configured in database.php
 //        'db' => require(dirname(__FILE__) . '/database.php'),
         'db' => [
             'class'=>'system.db.CDbConnection',
             'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/blog.db',
             'tablePrefix' => 'tbl_',
+            'schemaCachingDuration'=>3600,
         ],
 
         'errorHandler' => [
@@ -71,12 +78,6 @@ return [
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
                 ],
-                // uncomment the following to show log messages on web pages
-                /*
-                [
-                    'class'=>'CWebLogRoute',
-                ],
-                */
             ],
         ],
 
