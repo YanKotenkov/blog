@@ -7,7 +7,7 @@ $this->breadcrumbs = [
 ];
 
 $this->menu = [
-    ['label' => 'Create Comment', 'url' => ['create']],
+//    ['label' => 'Create Comment', 'url' => ['create']],
     ['label' => 'Manage Comment', 'url' => ['admin']],
 ];
 ?>

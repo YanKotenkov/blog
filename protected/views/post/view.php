@@ -11,11 +11,10 @@ $this->menu = [
     ['label' => 'List Post', 'url' => ['index']],
     ['label' => 'Create Post', 'url' => ['create']],
     ['label' => 'Update Post', 'url' => ['update', 'id' => $model->id]],
-    ['label' => 'Delete Post', 'url' => '#',
-        'linkOptions' => [
-        'submit' => ['delete', 'id' => $model->id],
-        'confirm' => 'Are you sure you want to delete this item?'
-        ]
+    ['label' =>
+        'Delete Post',
+        'url' => '#',
+        'linkOptions' => ['submit' => ['delete', 'id' => $model->id], 'confirm' => 'Are you sure you want to delete this item?']
     ],
     ['label' => 'Manage Post', 'url' => ['admin']],
 ];
@@ -31,8 +30,16 @@ $this->menu = [
         'content',
         'tags',
         'status',
-        'create_time',
-        'update_time',
+        [
+            'name' => 'create_time',
+            'type' => 'datetime',
+            'filter' => false,
+        ],
+        [
+            'name' => 'update_time',
+            'type' => 'datetime',
+            'filter' => false,
+        ],
         'author_id',
     ],
 ]); ?>
@@ -43,10 +50,10 @@ $this->menu = [
             <?php echo $model->commentCount . 'comment(s)'; ?>
         </h3>
 
-        <?php $this->renderPartial('_comments', array(
+        <?php $this->renderPartial('_comments', [
             'post' => $model,
             'comments' => $model->comments,
-        )); ?>
+        ]); ?>
     <?php endif; ?>
 
     <br>
@@ -57,8 +64,8 @@ $this->menu = [
             <?php echo Yii::app()->user->getFlash('commentSubmitted'); ?>
         </div>
     <?php else : ?>
-        <?php $this->renderPartial('/comment/_form', array(
+        <?php $this->renderPartial('/comment/_form', [
             'model' => $comment,
-        )); ?>
+        ]); ?>
     <?php endif; ?>
 </div> <!-- comments -->

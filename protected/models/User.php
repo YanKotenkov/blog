@@ -91,9 +91,9 @@ class User extends CActiveRecord
         $criteria->compare('email', $this->email, true);
         $criteria->compare('profile', $this->profile, true);
 
-        return new CActiveDataProvider($this, array(
+        return new CActiveDataProvider($this, [
             'criteria' => $criteria,
-        ));
+        ]);
     }
 
     /**

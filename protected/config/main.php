@@ -52,9 +52,10 @@ return [
         ],
 
         // database settings are configured in database.php
-//		'db'=>require(dirname(__FILE__).'/database.php'),
+//        'db' => require(dirname(__FILE__) . '/database.php'),
         'db' => [
-            'connectionString' => 'sqlite:/home/xshadowx/www/blog/protected/data/blog.db',
+            'class'=>'system.db.CDbConnection',
+            'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/blog.db',
             'tablePrefix' => 'tbl_',
         ],
 
@@ -79,6 +80,10 @@ return [
             ],
         ],
 
+        'format' => ['dateFormat' => 'd.m.Y',
+            'timeFormat' => 'H:i:s',
+            'datetimeFormat' => 'H:i d.m.Y',
+        ],
     ],
 
     // application-level parameters that can be accessed
@@ -86,6 +91,7 @@ return [
     'params' => [
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
+        'commentNeedApproval' => 1,
         'recentCommentCount' => 10,
         'tagCloudCount' => 10,
     ],

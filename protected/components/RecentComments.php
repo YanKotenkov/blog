@@ -12,7 +12,6 @@ class RecentComments extends CPortlet
      */
     public function getRecentComments()
     {
-        var_dump($this->maxComments);
         return Comment::model()->findRecentComments($this->maxComments);
     }
 

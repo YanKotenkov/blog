@@ -14,11 +14,11 @@
     <br/>
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-    <?php echo CHtml::encode($data->status); ?>
+    <?php echo CHtml::encode(Lookup::item("CommentStatus", $data->status)); ?>
     <br/>
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('create_time')); ?>:</b>
-    <?php echo CHtml::encode($data->create_time); ?>
+    <?php echo Helper::getDateFromTime($data->create_time); ?>
     <br/>
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('author')); ?>:</b>

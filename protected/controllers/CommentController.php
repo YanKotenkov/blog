@@ -70,7 +70,7 @@ class CommentController extends Controller
         if (isset($_POST['Comment'])) {
             $model->attributes = $_POST['Comment'];
             if ($model->save()) {
-                $this->redirect(array('view','id' => $model->id));
+                $this->redirect(['view','id' => $model->id]);
             }
         }
 
@@ -94,7 +94,7 @@ class CommentController extends Controller
         if (isset($_POST['Comment'])) {
             $model->attributes = $_POST['Comment'];
             if ($model->save()) {
-                $this->redirect(array('view','id' => $model->id));
+                $this->redirect(['view','id' => $model->id]);
             }
         }
 
@@ -114,7 +114,7 @@ class CommentController extends Controller
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax'])) {
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : ['admin']);
         }
     }
 
@@ -160,7 +160,7 @@ class CommentController extends Controller
         if (Yii::app()->request->isPostRequest) {
             $comment = $this->loadModel();
             $comment->approve();
-            $this->redirect(array('index'));
+            $this->redirect(['index']);
         } else {
             throw new CHttpException(400, 'Invalid request...');
         }

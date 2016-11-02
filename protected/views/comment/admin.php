@@ -9,7 +9,7 @@ $this->breadcrumbs = [
 
 $this->menu = [
     ['label' => 'List Comment', 'url' => ['index']],
-    ['label' => 'Create Comment', 'url' => ['create']],
+//    ['label' => 'Create Comment', 'url' => ['create']],
 ];
 
 Yii::app()->clientScript->registerScript('search', "
@@ -48,14 +48,20 @@ $('.search-form form').submit(function(){
     'columns' => [
         'id',
         'content',
-        'status',
-        'create_time',
+        [
+            'name' => 'status',
+            'value' => 'Lookup::item("CommentStatus",$data->status)',
+            'filter' => Lookup::items('CommentStatus'),
+        ],
+        [
+            'name' => 'create_time',
+            'type' => 'datetime',
+            'filter' => false,
+        ],
         'author',
         'email',
-        /*
         'url',
         'post_id',
-        */
         [
             'class' => 'CButtonColumn',
         ],

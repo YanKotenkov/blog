@@ -9,7 +9,7 @@ $this->breadcrumbs = [
 
 $this->menu = [
     ['label' => 'List Comment', 'url' => ['index']],
-    ['label' => 'Create Comment', 'url' => ['create']],
+//    ['label' => 'Create Comment', 'url' => ['create']],
     ['label' => 'Update Comment', 'url' => ['update', 'id' => $model->id]],
     ['label' => 'Delete Comment',
         'url' => '#',
@@ -29,7 +29,11 @@ $this->menu = [
         'id',
         'content',
         'status',
-        'create_time',
+        [
+            'name' => 'create_time',
+            'type' => 'datetime',
+            'filter' => false,
+        ],
         'author',
         'email',
         'url',

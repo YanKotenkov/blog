@@ -133,12 +133,12 @@ class Lookup extends CActiveRecord
      */
     private static function loadItems($type)
     {
-        self::$_items[$type] = array();
-        $models = self::model()->findAll(array(
+        self::$_items[$type] = [];
+        $models = self::model()->findAll([
             'condition' => 'type=:type',
-            'params' => array(':type' => $type),
+            'params' => [':type' => $type],
             'order' => 'position',
-        ));
+        ]);
         foreach ($models as $model) {
             self::$_items[$type][$model->code] = $model->name;
         }

@@ -54,9 +54,9 @@ class Comment extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
-            'post' => array(self::BELONGS_TO,'Post','post_id'),
-        );
+        return [
+            'post' => [self::BELONGS_TO,'Post','post_id'],
+        ];
     }
 
     /**
@@ -64,7 +64,7 @@ class Comment extends CActiveRecord
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'Id',
             'content' => 'Comment',
             'status' => 'Status',
@@ -73,7 +73,7 @@ class Comment extends CActiveRecord
             'email' => 'Email',
             'url' => 'Website',
             'post_id' => 'Post',
-        );
+        ];
     }
 
     /**
@@ -82,7 +82,7 @@ class Comment extends CActiveRecord
     public function approve()
     {
         $this->status = Comment::STATUS_APPROVED;
-        $this->update(array('status'));
+        $this->update(['status']);
     }
 
     /**
@@ -184,12 +184,6 @@ class Comment extends CActiveRecord
      */
     public function findRecentComments($limit = 10)
     {
-//        var_dump($this->findAll([
-//            'condition'=>'t.status='.self::STATUS_APPROVED,
-//            'order'=>'t.create_time DESC',
-//            'limit'=>$limit,
-//        ]));
-        var_dump($limit);
         return $this->with('post')->findAll([
             'condition' => 't.status=' . self::STATUS_APPROVED,
             'order' => 't.create_time DESC',

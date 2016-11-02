@@ -185,7 +185,7 @@ class Tag extends CActiveRecord
         $criteria->addInCondition('name', $tags);
         $this->updateCounters(array('frequency' => 1), $criteria);
         foreach ($tags as $name) {
-            if (!$this->exists('name=:name', array(':name' => $name))) {
+            if (!$this->exists('name=:name', [':name' => $name])) {
                 $tag = new Tag;
                 $tag->name = $name;
                 $tag->frequency = 1;
@@ -204,7 +204,7 @@ class Tag extends CActiveRecord
         }
         $criteria = new CDbCriteria;
         $criteria->addInCondition('name', $tags);
-        $this->updateCounters(array('frequency' => -1), $criteria);
+        $this->updateCounters(['frequency' => -1], $criteria);
         $this->deleteAll('frequency<=0');
     }
 }

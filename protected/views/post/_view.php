@@ -22,15 +22,15 @@
     <br/>
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-    <?php echo CHtml::encode($data->status); ?>
+    <?php echo CHtml::encode(Lookup::item("PostStatus", $data->status)); ?>
     <br/>
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('create_time')); ?>:</b>
-    <?php echo CHtml::encode(date('d-m-Y', $data->create_time)); ?>
+    <?php echo Helper::getDateFromTime($data->create_time); ?>
     <br/>
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('update_time')); ?>:</b>
-    <?php echo CHtml::encode($data->update_time); ?>
+    <?php echo Helper::getDateFromTime($data->update_time); ?>
     <br/>
 
     <?php /*

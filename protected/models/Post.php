@@ -89,7 +89,7 @@ class Post extends CActiveRecord
      */
     public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'ID',
             'title' => 'Title',
             'content' => 'Content',
@@ -98,7 +98,7 @@ class Post extends CActiveRecord
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
             'author_id' => 'Author',
-        );
+        ];
     }
 
     /**
@@ -128,9 +128,9 @@ class Post extends CActiveRecord
         $criteria->compare('update_time', $this->update_time);
         $criteria->compare('author_id', $this->author_id);
 
-        return new CActiveDataProvider($this, array(
+        return new CActiveDataProvider($this, [
             'criteria' => $criteria,
-        ));
+        ]);
     }
 
     /**
